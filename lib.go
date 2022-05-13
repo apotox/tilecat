@@ -17,32 +17,17 @@ type tileCatOptions struct {
 }
 
 type TileCat struct {
-	options   *tileCatOptions
-	allImages []*image.Image
+	options *tileCatOptions
 }
 
 func NewTileCat(options *tileCatOptions) *TileCat {
 	return &TileCat{
-		options:   options,
-		allImages: []*image.Image{},
+		options: options,
 	}
 }
 
 func (t *TileCat) setOptions(options *tileCatOptions) error {
 	t.options = options
-	return nil
-}
-
-func (t *TileCat) loadImages(files []string) *image.Image {
-
-	for _, filePath := range files {
-		f, err := os.Open(filePath)
-		if err == nil {
-			img, _, _ := image.Decode(f)
-			t.allImages = append(t.allImages, &img)
-		}
-	}
-
 	return nil
 }
 
