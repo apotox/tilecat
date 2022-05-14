@@ -14,7 +14,13 @@ func listImages(dir string) ([]string, error) {
 		if info.IsDir() {
 			return nil
 		}
-		files = append(files, path)
+
+		ext := filepath.Ext(path)
+
+		if ext == ".jpg" || ext == ".jpeg" || ext == ".png" {
+			files = append(files, path)
+		}
+
 		return nil
 
 	})

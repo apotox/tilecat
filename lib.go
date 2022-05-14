@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"image"
 	"image/png"
 	"os"
@@ -47,10 +48,15 @@ func (t *TileCat) processImages(files []string) (*image.RGBA, error) {
 
 	rgba, err := gim.New(grids, t.options.columnCount, t.options.rowCount).Merge()
 
+	if err != nil {
+		fmt.Printf("processImages error: %+v\n", err)
+	}
+
 	return rgba, err
 }
 
 func (t *TileCat) save() error {
+
 	if t.options == nil {
 		return errors.New("no options!")
 	}
@@ -66,6 +72,8 @@ func (t *TileCat) save() error {
 	if err != nil {
 		return err
 	}
+
+	fmt.Printf("saving..\n")
 
 	dst, err := os.Create(t.options.out)
 	//err = jpeg.Encode(dst, rgba, &jpeg.Options{Quality: 80})

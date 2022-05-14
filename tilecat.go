@@ -54,7 +54,6 @@ func main() {
 			options.rowCount = c.Int("rowCount")
 
 			tilecat.setOptions(options)
-
 			tilecat.save()
 
 			return nil
